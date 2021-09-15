@@ -1,0 +1,3 @@
+== Polynomials
+
+Common Lisp program to display the α, β, Δ, variation table, canonical form and solutions to a quadratic polynomial of form +𝑎𝑥²\+𝑏𝑥\+𝑐+.
