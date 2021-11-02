@@ -28,7 +28,7 @@
       `(,(check left) . ,(check right)))))
 
 (defun extremum (a b c)
-  "Return the coordinates of the extermum of a polynomial."
+  "Return the coordinates of the extremum of a polynomial."
   (flet ((f (x) (+ (* (* x x) a) (* x b) c)))
     (let ((alpha (/ (- 0 b) (* 2 a))))
       (values alpha (f alpha)))))
