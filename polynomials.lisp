@@ -25,7 +25,7 @@
   (flet ((check (v) (if (subtypep (type-of v) 'complex) NIL v)))
     (let ((left (/ (- (- 0 b) (sqrt delta)) (* 2 a)))
 	  (right (/ (+ (- 0 b) (sqrt delta)) (* 2 a))))
-      `(,(check left) . ,(check right)))))
+      (values (check left) (check right)))))
 
 (defun extremum (a b c)
   "Return the coordinates of the extremum of a polynomial."
@@ -40,10 +40,10 @@
 (defun all (a b c)
   "Display the canonic form, variations tables and equation solutions of a polynomial."
   (multiple-value-bind (alpha beta) (extremum a b c)
-    (let* ((delta (discriminant a b c))
-	   (solved (solve a b delta)))
-      (format t "α = ~a ; β = ~a~%" alpha beta)
-      (canonicalize a alpha beta)
-      (variations alpha beta a)
-      (format t "Δ = ~a~%" delta)
-      (format t "S = {~a, ~a}~%" (car solved) (cdr solved)))))
+    (let ((delta (discriminant a b c)))
+      (multiple-value-bind (x1 x2) (solve a b delta)
+	(format t "α = ~a ; β = ~a~%" alpha beta)
+	(canonicalize a alpha beta)
+	(variations alpha beta a)
+	(format t "Δ = ~a~%" delta)
+	(format t "S = {~a, ~a}~%" x1 x2)))))
