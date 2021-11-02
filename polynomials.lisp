@@ -14,7 +14,7 @@
 		   (if f "↘" "↗")))))
     (format t "   𝑥   | -∞     ~a     +∞~@
 	    -------------------------~@
-	    Var. 𝑓 |   ~a   ~a   ~a~%" alpha (funcall #'get-arrow a T) beta (funcall #'get-arrow a NIL))))
+	    Var. 𝑓 |   ~a   ~a   ~a~%" alpha (get-arrow a T) beta (get-arrow a NIL))))
 
 (defun discriminant (a b c)
   "Get the discriminant of a polynomial."
@@ -25,7 +25,7 @@
   (flet ((check (v) (if (subtypep (type-of v) 'complex) NIL v)))
     (let ((left (/ (- (- 0 b) (sqrt delta)) (* 2 a)))
 	  (right (/ (+ (- 0 b) (sqrt delta)) (* 2 a))))
-      `(,(funcall #'check left) . ,(funcall #'check right)))))
+      `(,(check left) . ,(check right)))))
 
 (defun extremum (a b c)
   "Return the coordinates of the extermum of a polynomial."
